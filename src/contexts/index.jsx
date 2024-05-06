@@ -4,6 +4,10 @@ import { createContext, useState, useMemo, useCallback } from "react";
 export const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({ children }) => {
+  const [products, setProducts] = useState(null);
+  const [searchByTitle, setSearchByTitle] = useState("");
+  const [searchByCategory, setSearchByCategory] = useState("");
+
   // products in cart
   const [productsInCart, setProductsInCart] = useState([]);
 
@@ -27,6 +31,12 @@ export const ShoppingCartProvider = ({ children }) => {
 
   const value = useMemo(
     () => ({
+      products,
+      setProducts,
+      searchByTitle,
+      setSearchByTitle,
+      searchByCategory,
+      setSearchByCategory,
       productsInCart,
       setProductsInCart,
       isCartOpen,
@@ -41,6 +51,12 @@ export const ShoppingCartProvider = ({ children }) => {
       closeProductDetail,
     }),
     [
+      products,
+      setProducts,
+      searchByTitle,
+      setSearchByTitle,
+      searchByCategory,
+      setSearchByCategory,
       productsInCart,
       setProductsInCart,
       isCartOpen,

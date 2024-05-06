@@ -5,15 +5,21 @@ import { ShoppingCartContext } from "../../contexts";
 
 export default function Navbar() {
   const activeStyle = "underline underline-offset-4";
-  const { productsInCart, openCart } = useContext(ShoppingCartContext);
+  const { productsInCart, openCart, setSearchByCategory } =
+    useContext(ShoppingCartContext);
 
   const leftMenu = [
-    { key: 1, name: "All", path: "/" },
-    { key: 2, name: "Clothes", path: "/clothes" },
-    { key: 3, name: "Electronics", path: "/electronics" },
-    { key: 4, name: "Furniture", path: "/furniture" },
-    { key: 5, name: "Toys", path: "/toys" },
-    { key: 6, name: "Others", path: "/others" },
+    { key: 1, name: "All", path: "/", category: "" },
+    { key: 2, name: "Clothes", path: "/clothes", category: "clothes" },
+    {
+      key: 3,
+      name: "Electronics",
+      path: "/electronics",
+      category: "electronics",
+    },
+    { key: 4, name: "Furniture", path: "/furniture", category: "furniture" },
+    { key: 5, name: "Toys", path: "/toys", category: "toys" },
+    { key: 6, name: "Others", path: "/others", category: "others" },
   ];
 
   const rightMenu = [
@@ -34,6 +40,7 @@ export default function Navbar() {
             <li key={item.key}>
               <NavLink
                 to={item.path}
+                onClick={() => setSearchByCategory(item.category)}
                 className={({ isActive }) =>
                   isActive ? activeStyle : undefined
                 }
