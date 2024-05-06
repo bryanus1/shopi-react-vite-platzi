@@ -20,7 +20,7 @@ export default function ProductDetail() {
     <aside
       className={`${
         isProductDetailOpen ? "flex" : "hidden"
-      } product-detail flex flex-col fixed right-0 border bg-white border-black rounded-lg mr-3`}
+      } product-detail flex-col fixed right-0 border bg-white border-black rounded-lg mr-3`}
     >
       <div className="flex justify-between items-center p-6">
         <h2 className="font-medium text-xl">Detail</h2>

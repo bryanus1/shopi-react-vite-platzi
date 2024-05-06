@@ -5,7 +5,7 @@ import { ShoppingCartContext } from "../../contexts";
 
 export default function Navbar() {
   const activeStyle = "underline underline-offset-4";
-  const { countProducts } = useContext(ShoppingCartContext);
+  const { productsInCart, openCart } = useContext(ShoppingCartContext);
 
   const leftMenu = [
     { key: 1, name: "All", path: "/" },
@@ -63,9 +63,14 @@ export default function Navbar() {
           );
         })}
 
-        <li className="flex justify-between items-center">
-          <ShoppingCartIcon className="size-6 text-black" />
-          <div>{countProducts}</div>
+        <li>
+          <button
+            className="flex justify-between items-center"
+            onClick={() => openCart()}
+          >
+            <ShoppingCartIcon className="size-6 text-black" />
+            <div>{productsInCart.length}</div>
+          </button>
         </li>
       </ul>
     </nav>

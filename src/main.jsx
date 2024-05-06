@@ -1,26 +1,31 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 
 // Styles
-import './index.css'
+import "./index.css";
 
 // Routes
-import { Routes } from './routes'
+import { Routes } from "./routes";
 
 // Contexts
-import { ShoppingCartProvider } from './contexts'
+import { ShoppingCartProvider } from "./contexts";
 
 // Components
-import Navbar from './components/navbar'
+import Cart from "./components/cart";
+import Navbar from "./components/navbar";
+import ProductDetail from "./components/product-detail";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ShoppingCartProvider>
       <BrowserRouter>
         <Navbar />
         <Routes />
       </BrowserRouter>
+
+      <ProductDetail />
+      <Cart />
     </ShoppingCartProvider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

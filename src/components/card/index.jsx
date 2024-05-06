@@ -3,10 +3,10 @@ import { useContext } from "react";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../contexts";
 
-export function Card({ title, price, categoryName, image, description }) {
+export function Card({ id, title, price, categoryName, image, description }) {
   const {
-    countProducts,
-    setCountProducts,
+    productsInCart,
+    setProductsInCart,
     openProductDetail,
     setProductDetail,
   } = useContext(ShoppingCartContext);
@@ -20,6 +20,15 @@ export function Card({ title, price, categoryName, image, description }) {
       description,
     });
     openProductDetail();
+  };
+
+  const addProductsInCart = () => {
+    let isProductInCart = productsInCart.find((product) => product.id === id);
+    if (isProductInCart) return;
+    setProductsInCart([
+      ...productsInCart,
+      { id, title, price, image, count: 1 },
+    ]);
   };
 
   return (
@@ -38,9 +47,7 @@ export function Card({ title, price, categoryName, image, description }) {
         />
         <button
           className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
-          onClick={() => {
-            setCountProducts(countProducts + 1);
-          }}
+          onClick={() => addProductsInCart()}
         >
           <PlusIcon className="size-6 text-black" />
         </button>
@@ -54,6 +61,7 @@ export function Card({ title, price, categoryName, image, description }) {
 }
 
 Card.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   categoryName: PropTypes.string.isRequired,

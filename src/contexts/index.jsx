@@ -4,8 +4,15 @@ import { createContext, useState, useMemo, useCallback } from "react";
 export const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({ children }) => {
-  // Count of products in the shopping cart
-  const [countProducts, setCountProducts] = useState(0);
+  // products in cart
+  const [productsInCart, setProductsInCart] = useState([]);
+
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const openCart = useCallback(() => setIsCartOpen(true), []);
+  const closeCart = useCallback(() => setIsCartOpen(false), []);
+
+  // Product detail
+  const [productDetail, setProductDetail] = useState({});
 
   // Product detail sidebar
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
@@ -15,27 +22,30 @@ export const ShoppingCartProvider = ({ children }) => {
     []
   );
 
-  // Product detail
-  const [productDetail, setProductDetail] = useState({});
-
   const value = useMemo(
     () => ({
-      countProducts,
-      setCountProducts,
+      productsInCart,
+      setProductsInCart,
+      isCartOpen,
+      openCart,
+      closeCart,
+      productDetail,
+      setProductDetail,
       isProductDetailOpen,
       openProductDetail,
       closeProductDetail,
-      productDetail,
-      setProductDetail,
     }),
     [
-      countProducts,
-      setCountProducts,
+      productsInCart,
+      setProductsInCart,
+      isCartOpen,
+      openCart,
+      closeCart,
+      productDetail,
+      setProductDetail,
       isProductDetailOpen,
       openProductDetail,
       closeProductDetail,
-      productDetail,
-      setProductDetail,
     ]
   );
 
