@@ -1,13 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
 
 // Styles
 import './index.css'
 
+// Routes
+import { Routes } from './routes'
+
+// Contexts
+import { ShoppingCartProvider } from './contexts'
+
+// Components
+import Navbar from './components/navbar'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <h1 className="text-4xl text-center text-blue-500">
-      Hello, Tailwind CSS!
-    </h1>
+    <ShoppingCartProvider>
+      <BrowserRouter>
+        <Navbar />
+        <Routes />
+      </BrowserRouter>
+    </ShoppingCartProvider>
   </React.StrictMode>,
 )
