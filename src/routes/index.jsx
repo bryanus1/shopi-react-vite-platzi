@@ -3,6 +3,7 @@ import { useRoutes } from "react-router-dom";
 // Pages
 import Home from "../pages/home";
 import Account from "../pages/account";
+import Order from "../pages/order";
 import Orders from "../pages/orders";
 import SignIn from "../pages/sign-in";
 import NotFound from "../pages/not-found";
@@ -18,10 +19,13 @@ export const Routes = () => {
       element: <Account />,
     },
     {
+      path: "/order/:id",
+      element: <Order />,
+    },
+    {
       path: "/orders",
       element: <Orders />,
     },
-
     {
       path: "/sign-in",
       element: <SignIn />,

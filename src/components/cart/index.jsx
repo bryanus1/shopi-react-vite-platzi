@@ -5,11 +5,18 @@ import { ShoppingCartContext } from "../../contexts";
 import OrderCard from "../order-card";
 
 export default function Cart() {
-  const { productsInCart, setProductsInCart, isCartOpen, closeCart, setOrder } =
-    useContext(ShoppingCartContext);
+  const {
+    productsInCart,
+    setProductsInCart,
+    isCartOpen,
+    closeCart,
+    orders,
+    setOrders,
+  } = useContext(ShoppingCartContext);
 
   const handleCheckout = () => {
-    setOrder({
+    const newOrder = {
+      id: orders.length + 1,
       date: new Date(),
       products: productsInCart,
       totalItems: productsInCart.length,
@@ -17,7 +24,8 @@ export default function Cart() {
         (total, product) => total + product.price * product.count,
         0
       ),
-    });
+    };
+    setOrders([...orders, newOrder]);
     setProductsInCart([]);
   };
 

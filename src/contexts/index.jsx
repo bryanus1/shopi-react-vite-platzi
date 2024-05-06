@@ -12,7 +12,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const closeCart = useCallback(() => setIsCartOpen(false), []);
 
   // Order
-  const [order, setOrder] = useState({});
+  const [orders, setOrders] = useState([]);
 
   // Product detail
   const [productDetail, setProductDetail] = useState({});
@@ -32,8 +32,8 @@ export const ShoppingCartProvider = ({ children }) => {
       isCartOpen,
       openCart,
       closeCart,
-      order,
-      setOrder,
+      orders,
+      setOrders,
       productDetail,
       setProductDetail,
       isProductDetailOpen,
@@ -46,8 +46,8 @@ export const ShoppingCartProvider = ({ children }) => {
       isCartOpen,
       openCart,
       closeCart,
-      order,
-      setOrder,
+      orders,
+      setOrders,
       productDetail,
       setProductDetail,
       isProductDetailOpen,
