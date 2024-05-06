@@ -5,8 +5,21 @@ import { ShoppingCartContext } from "../../contexts";
 import OrderCard from "../order-card";
 
 export default function Cart() {
-  const { productsInCart, isCartOpen, closeCart } =
+  const { productsInCart, setProductsInCart, isCartOpen, closeCart, setOrder } =
     useContext(ShoppingCartContext);
+
+  const handleCheckout = () => {
+    setOrder({
+      date: new Date(),
+      products: productsInCart,
+      totalItems: productsInCart.length,
+      total: productsInCart.reduce(
+        (total, product) => total + product.price * product.count,
+        0
+      ),
+    });
+    setProductsInCart([]);
+  };
 
   return (
     <aside
@@ -47,7 +60,10 @@ export default function Cart() {
             )}
           </span>
         </div>
-        <button className=" w-full rounded-md text-white font-medium bg-black  active:bg-white active:text-black hover:bg-slate-900 hover:text-slate-100 ">
+        <button
+          className="w-full rounded-md text-white font-medium bg-black  active:bg-white active:text-black hover:bg-slate-900 hover:text-slate-100"
+          onClick={() => handleCheckout()}
+        >
           Checkout
         </button>
       </div>

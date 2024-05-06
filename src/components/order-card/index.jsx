@@ -72,7 +72,7 @@ export default function OrderCard({ id, title, price, image, count }) {
 }
 
 OrderCard.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,

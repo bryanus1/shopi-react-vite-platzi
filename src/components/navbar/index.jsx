@@ -19,7 +19,7 @@ export default function Navbar() {
   const rightMenu = [
     { key: 1, name: "My Orders", path: "/orders" },
     { key: 2, name: "Account", path: "/account" },
-    { key: 2, name: "Sign In", path: "/sign-in" },
+    { key: 3, name: "Sign In", path: "/sign-in" },
   ];
 
   return (

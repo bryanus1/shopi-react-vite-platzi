@@ -11,6 +11,9 @@ export const ShoppingCartProvider = ({ children }) => {
   const openCart = useCallback(() => setIsCartOpen(true), []);
   const closeCart = useCallback(() => setIsCartOpen(false), []);
 
+  // Order
+  const [order, setOrder] = useState({});
+
   // Product detail
   const [productDetail, setProductDetail] = useState({});
 
@@ -29,6 +32,8 @@ export const ShoppingCartProvider = ({ children }) => {
       isCartOpen,
       openCart,
       closeCart,
+      order,
+      setOrder,
       productDetail,
       setProductDetail,
       isProductDetailOpen,
@@ -41,6 +46,8 @@ export const ShoppingCartProvider = ({ children }) => {
       isCartOpen,
       openCart,
       closeCart,
+      order,
+      setOrder,
       productDetail,
       setProductDetail,
       isProductDetailOpen,
