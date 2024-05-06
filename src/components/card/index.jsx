@@ -1,12 +1,32 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
+import { PlusIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../contexts";
 
-export function Card({ title, price, categoryName, image }) {
-  const { countProducts, setCountProducts } = useContext(ShoppingCartContext);
+export function Card({ title, price, categoryName, image, description }) {
+  const {
+    countProducts,
+    setCountProducts,
+    openProductDetail,
+    setProductDetail,
+  } = useContext(ShoppingCartContext);
+
+  const openSidebar = () => {
+    setProductDetail({
+      title,
+      price,
+      categoryName,
+      image,
+      description,
+    });
+    openProductDetail();
+  };
 
   return (
-    <div className="bg-white cursor-pointer w-56 h-60 rounded-lg">
+    <button
+      className="bg-white cursor-pointer w-56 h-60 rounded-lg"
+      onClick={() => openSidebar()}
+    >
       <figure className="relative mb-2 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5">
           {categoryName}
@@ -22,14 +42,14 @@ export function Card({ title, price, categoryName, image }) {
             setCountProducts(countProducts + 1);
           }}
         >
-          +
+          <PlusIcon className="size-6 text-black" />
         </button>
       </figure>
       <p className="flex justify-between">
         <span className="text-sm font-light">{title}</span>
         <span className="text-lg font-medium">${price}</span>
       </p>
-    </div>
+    </button>
   );
 }
 
@@ -38,4 +58,5 @@ Card.propTypes = {
   price: PropTypes.number.isRequired,
   categoryName: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };

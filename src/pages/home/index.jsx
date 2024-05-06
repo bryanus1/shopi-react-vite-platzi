@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import Layout from "../../components/layout";
 import { Card } from "../../components/card";
+import ProductDetail from "../../components/productDetail";
 
 export default function Home() {
   const [products, setProducts] = useState(null);
@@ -24,10 +25,13 @@ export default function Home() {
               price={product.price}
               categoryName={product.category.name}
               image={product.images[0]}
+              description={product.description}
             />
           );
         })}
       </div>
+
+      <ProductDetail />
     </Layout>
   );
 }
